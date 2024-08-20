@@ -4,26 +4,32 @@ import { Button as GSButton, ButtonSpinner, Text } from '@gluestack-ui/themed';
 
 type Props = ComponentProps<typeof GSButton> & {
   title: string;
+  variant?: 'solid' | 'outline';
   isLoading?: boolean;
 }
 
-export function Button({ title, isLoading = false, ...rest }: Props) {
+export function Button({
+  title,
+  variant = 'solid',
+  isLoading = false,
+  ...rest
+}: Props) {
   return (
     <GSButton
       w="$full"
       h="$14"
-      bg="$green700"
-      borderWidth="$0"
+      bg={variant === 'outline' ? 'transparent' : '$green700'}
+      borderWidth={variant === 'outline' ? '$1' : '$0'}
       borderColor="$green500"
       rounded="$sm"
-      $active-bg="$green500"
+      $active-bg={variant === 'outline' ? '$gray500' : '$green500'}
       disabled={isLoading}
       {...rest}
     >
       {isLoading ? (
         <ButtonSpinner color="$white" />
       ) : (
-        <Text color="$white" fontFamily="$heading" fontSize="$sm">
+        <Text color={variant === 'outline' ? '$green500' : '$white'} fontFamily="$heading" fontSize="$sm">
           {title}
         </Text>
       )}
