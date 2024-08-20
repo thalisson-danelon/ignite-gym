@@ -1,14 +1,23 @@
 import React from 'react';
+import { Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Center, Heading, Image, KeyboardAvoidingView, ScrollView, Text, VStack, } from '@gluestack-ui/themed';
+
+import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
+
+import BackgroundImg from '@assets/background.png';
+import Logo from '@assets/logo.svg';
 
 import { Input } from '@components/Input';
 import { Button } from '@components/Button';
 
-import BackgroundImg from '@assets/background.png';
-import Logo from '@assets/logo.svg';
-import { Platform } from 'react-native';
-
 export function SignUp() {
+  const navigation = useNavigation<AuthNavigatorRoutesProps>();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -45,7 +54,7 @@ export function SignUp() {
               <Input placeholder="Senha" secureTextEntry />
               <Button title="Criar e acessar" />
             </Center>
-            <Button title="Voltar para o login" variant="outline" mt="$12" />
+            <Button title="Voltar para o login" variant="outline" mt="$12" onPress={handleGoBack} />
           </VStack>
         </VStack>
       </ScrollView>
