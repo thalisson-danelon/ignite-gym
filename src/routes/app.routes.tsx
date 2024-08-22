@@ -40,7 +40,8 @@ export function AppRoutes() {
           paddingBottom: tokens.space['10'],
           paddingTop: tokens.space['6'],
         }
-      }}>
+      }}
+    >
       <Screen
         name="home"
         component={Home}

@@ -24,14 +24,16 @@ export function Button({
       rounded="$sm"
       $active-bg={variant === 'outline' ? '$gray500' : '$green500'}
       disabled={isLoading}
-      {...rest}>
+      {...rest}
+    >
       {isLoading ? (
         <ButtonSpinner color="$white" />
       ) : (
         <Text
           color={variant === 'outline' ? '$green500' : '$white'}
           fontFamily="$heading"
-          fontSize="$sm">
+          fontSize="$sm"
+        >
           {title}
         </Text>
       )}

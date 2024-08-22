@@ -21,12 +21,14 @@ export function Group({ name, isActive, ...rest }: Props) {
           borderWidth: 1,
         },
       }}
-      {...rest}>
+      {...rest}
+    >
       <Text
         color={isActive ? '$green500' : '$gray200'}
         textTransform="uppercase"
         fontSize="$xs"
-        fontFamily="$heading">
+        fontFamily="$heading"
+      >
         {name}
       </Text>
     </Button>
