@@ -12,9 +12,8 @@ export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
   return (
     <GluestackUIProvider config={config}>
-      <StatusBar barStyle="light-content" backgroundColor="trasparent" translucent />
+      <StatusBar barStyle='light-content' backgroundColor='trasparent' translucent />
       {fontsLoaded ? <Routes /> : <Loading />}
     </GluestackUIProvider>
-  )
-    ;
+  );
 }

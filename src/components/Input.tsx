@@ -14,8 +14,7 @@ export function Input({ ...rest }: Props) {
       $focus={{
         borderWidth: '$1',
         borderColor: '$green500',
-      }}
-    >
+      }}>
       <InputField
         color="$white"
         fontFamily="$body"
