@@ -1,11 +1,13 @@
-import { Center } from '@gluestack-ui/themed';
+import { VStack } from '@gluestack-ui/themed';
 
-import { ScreenHeader } from "@screens/ScreenHeader";
+import { ScreenHeader } from "@components/ScreenHeader";
+import { HistoryCard } from "@components/HistoryCard";
 
 export function History() {
   return (
-    <Center flex={1}>
+    <VStack>
       <ScreenHeader title="Histórico" />
-    </Center>
+      <HistoryCard />
+    </VStack>
   );
 }
