@@ -1,5 +1,5 @@
-import { Alert, Platform, TouchableOpacity } from "react-native";
-import { Center, Heading, KeyboardAvoidingView, ScrollView, Text, VStack } from '@gluestack-ui/themed';
+import { Platform, TouchableOpacity } from "react-native";
+import { Center, Heading, KeyboardAvoidingView, ScrollView, Text, useToast, VStack } from '@gluestack-ui/themed';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 
@@ -8,9 +8,11 @@ import { Input } from "@components/Input";
 import { ScreenHeader } from "@components/ScreenHeader";
 import { UserPhoto } from "@components/UserPhoto";
 import { useState } from "react";
+import { ToastMessage } from "@components/ToastMessage";
 
 export function Profile() {
   const [userPhoto, setUserPhoto] = useState('https://github.com/thalisson-danelon.png')
+  const toast = useToast();
 
   async function handleUserPhotoSelect() {
     try {
@@ -25,7 +27,17 @@ export function Profile() {
       if (!photoUri) return;
       const photoInfo = (await FileSystem.getInfoAsync(photoUri)) as { size: number };
       if (photoInfo.size / 1024 / 1024 > 5) {
-        return Alert.alert('Essa imagem é muito grande. Escolha uma de até 5MB');
+        return toast.show({
+          placement: 'top',
+          render: ({ id }) =>
+            <ToastMessage
+              id={id}
+              action='error'
+              title="Imagem muito grande"
+              description="Escolha uma imagem de até 5MB"
+              onClose={() => toast.close(id)}
+            />
+        })
       }
       setUserPhoto(photoUri);
     } catch (error) {
